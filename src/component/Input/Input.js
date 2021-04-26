@@ -9,19 +9,26 @@ class Input extends React.Component {
     alert("1");
   };
   onDrop = (event) => {
+    event.stopPropagation();
     event.preventDefault();
     let dt = event.dataTransfer;
     let files = dt.files;
-    let json = dt.getData('json');
-    console.log(JSON.parse(json))
+    let reader = new FileReader();
+    reader.addEventListener("load", e => {
+      console.log(e.target.result, JSON.parse(reader.result))
+    });
+    reader.readAsText(files[0]);
   };
   onDragEnter = (event) => {
+    event.stopPropagation();
     event.preventDefault();
   };
   onDragLeave = (event) => {
+    event.stopPropagation();
     event.preventDefault();
   };
   onDragOver = (event) => {
+    event.stopPropagation();
     event.preventDefault();
   };
 
